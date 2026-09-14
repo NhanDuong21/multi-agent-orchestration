@@ -65,6 +65,7 @@ Backend phục vụ API và frontend build tại **http://127.0.0.1:3001/**, v�
 | [docs/LAB-00.md](docs/LAB-00.md) | Phạm vi/tiêu chí nền |
 | [AGENTS.md](AGENTS.md) | Nhận việc/kiểm chứng/bàn giao |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | Bản nền và nhận việc Antigravity |
+| [docs/REVIEW.md](docs/REVIEW.md) | Review độc lập, phát hiện và xử lý |
 
 React + Vite + TypeScript; Node.js + Express + TypeScript; SQLite qua node:sqlite; Tailwind CSS qua Vite plugin. npm workspace quản lý dependencies, root scripts giữ đường dẫn dữ liệu nhất quán. TypeScript 5.9 nằm trong dải hỗ trợ thực tế của typescript-eslint; lockfile ghi các phiên bản đã kiểm chứng.
 
@@ -83,6 +84,8 @@ Project cá nhân **[Multi-Agent Orchestration Lab](https://github.com/users/Nha
 | [#7 · Review/tích hợp UI](https://github.com/NhanDuong21/multi-agent-orchestration/issues/7) | agent:codex-review · lab:01 |
 
 Assignee NhanDuong21 là người chịu trách nhiệm thật; labels/issue xác định agent. Đọc yêu cầu/dependencies/comment, ghi phiên/vai trò/branch và In Progress trước khi nhận. Chờ review/merge giữ In Review; chỉ Done/đóng sau nghiệm thu và quy trình chấp nhận. Chưa tự merge PR Lab 00.
+
+Bản nền bàn giao tại **[PR #8](https://github.com/NhanDuong21/multi-agent-orchestration/pull/8)**, branch `nyan/lab-00-mini-issue-tracker`. #1–#5 In Review, #6/#7 Backlog; người dùng nghiệm thu trước merge. Xem [bằng chứng local/browser/CI](docs/VERIFICATION.md) và [review độc lập](docs/REVIEW.md).
 
 Sau nghiệm thu/merge nền, mở Antigravity và đưa **[issue #6](https://github.com/NhanDuong21/multi-agent-orchestration/issues/6)** cùng HANDOFF.md. Label không tự chạy Antigravity. #6 chỉ đổi frontend; ghi nhu cầu backend để Codex xử lý. Codex tiếp tục #7 sau bàn giao UI.
 
