@@ -36,12 +36,12 @@ export function CreateIssueForm({ onCreate, disabled }: Props) {
       </div>
       <form className="mt-5 space-y-5" onSubmit={submit} noValidate>
         <div>
-          <label htmlFor="title" className="label">Tiêu đề <span className="font-normal text-slate-400">(bắt buộc)</span></label>
+          <label htmlFor="title" className="label">Tiêu đề <span className="font-normal text-slate-500">(bắt buộc)</span></label>
           <input id="title" name="title" className="field" value={title} maxLength={TITLE_MAX_LENGTH} required
             aria-invalid={Boolean(titleError)} aria-describedby={`title-hint${titleError ? ' title-error' : ''}`}
             disabled={submitting} onChange={event => { setTitle(event.target.value); setTitleError(''); }}
             placeholder="Ví dụ: Kiểm tra form tạo phiếu" />
-          <p id="title-hint" className="mt-2 text-xs font-medium text-slate-400">Tối đa {TITLE_MAX_LENGTH} ký tự.</p>
+          <p id="title-hint" className="mt-2 text-xs font-medium text-slate-500">Tối đa {TITLE_MAX_LENGTH} ký tự.</p>
           {titleError && <p id="title-error" role="alert" className="mt-2 text-sm font-medium text-red-600">{titleError}</p>}
         </div>
         <div>
@@ -50,7 +50,7 @@ export function CreateIssueForm({ onCreate, disabled }: Props) {
             value={description} maxLength={DESCRIPTION_MAX_LENGTH} disabled={submitting}
             onChange={event => setDescription(event.target.value)} aria-describedby="description-hint"
             placeholder="Thêm nội dung, bước thực hiện hoặc kết quả mong đợi…" />
-          <p id="description-hint" className="mt-2 text-xs font-medium text-slate-400">Không bắt buộc · Tối đa {DESCRIPTION_MAX_LENGTH} ký tự.</p>
+          <p id="description-hint" className="mt-2 text-xs font-medium text-slate-500">Không bắt buộc · Tối đa {DESCRIPTION_MAX_LENGTH} ký tự.</p>
         </div>
         {submitError && <p role="alert" className="error-box">{submitError}</p>}
         <button type="submit" className="primary-button mt-2 w-full" disabled={disabled || submitting}>

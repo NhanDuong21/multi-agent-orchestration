@@ -121,9 +121,9 @@ export function App() {
                 <button className={`group relative w-full rounded-xl border p-4 text-left transition-all duration-300 disabled:opacity-60 ${selectedId === item.id ? 'border-blue-500 bg-blue-50/80 shadow-md shadow-blue-500/10' : 'border-slate-200/60 bg-white/50 hover:border-blue-300 hover:bg-white hover:shadow-md'}`}
                   disabled={saving} aria-pressed={selectedId === item.id}
                   onClick={() => { setSelectedId(item.id); setNotice(''); }}>
-                  <span className="flex flex-wrap items-center justify-between gap-3"><span className={`text-xs font-bold ${selectedId === item.id ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-500 transition-colors'}`}>#{item.id}</span><StatusBadge status={item.status} /></span>
+                  <span className="flex flex-wrap items-center justify-between gap-3"><span className={`text-xs font-bold ${selectedId === item.id ? 'text-blue-600' : 'text-slate-500 group-hover:text-blue-500 transition-colors'}`}>#{item.id}</span><StatusBadge status={item.status} /></span>
                   <span className={`mt-3 block font-semibold leading-snug [overflow-wrap:anywhere] ${selectedId === item.id ? 'text-blue-900' : 'text-slate-800'}`}>{item.title}</span>
-                  <span className="mt-2 flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                  <span className="mt-2 flex items-center gap-1.5 text-xs font-medium text-slate-500">
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <time dateTime={item.createdAt}>{timestamp(item.createdAt)}</time>
                   </span>
@@ -139,12 +139,12 @@ export function App() {
           {detailLoading && <p role="status" className="mt-5 py-4 text-sm text-slate-500">Đang tải chi tiết…</p>}
           {detailError && <div className="error-box mt-5"><p role="alert">{detailError}</p><button className="mt-2 font-semibold underline" disabled={listLoading || saving} onClick={() => setRefresh(value => value + 1)}>Tải lại chi tiết</button></div>}
           {issue && !detailLoading && <div className="space-y-6 animate-fade-in">
-            <div><div className="mb-3 flex items-center gap-3"><span className="text-sm font-bold text-slate-400">#{issue.id}</span><StatusBadge status={issue.status} /></div>
+            <div><div className="mb-3 flex items-center gap-3"><span className="text-sm font-bold text-slate-500">#{issue.id}</span><StatusBadge status={issue.status} /></div>
               <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 [overflow-wrap:anywhere]">{issue.title}</h3>
             </div>
             <div className="rounded-xl bg-slate-50/50 p-4 border border-slate-100">
               <h4 className="label !mb-2">Mô tả</h4>
-              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700 [overflow-wrap:anywhere]">{issue.description || <span className="italic text-slate-400">Chưa có mô tả.</span>}</p>
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700 [overflow-wrap:anywhere]">{issue.description || <span className="italic text-slate-500">Chưa có mô tả.</span>}</p>
             </div>
             <div>
               <label htmlFor="status" className="label">Trạng thái</label>

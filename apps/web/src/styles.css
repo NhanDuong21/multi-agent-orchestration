@@ -2,8 +2,8 @@
 
 @theme {
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
-  --animate-fade-in: fade-in 0.3s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.5s ease-out both;
+  --animate-fade-in: fade-in 0.3s ease-out both;
   
   @keyframes fade-in-up {
     0% { opacity: 0; transform: translateY(10px); }
@@ -16,6 +16,15 @@
 }
 
 @layer base {
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body { @apply m-0 min-h-screen bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900; }
   /* Optional: Background gradient on body */
   body::before {
