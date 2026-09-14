@@ -50,7 +50,7 @@ describe('Issue API with isolated, real SQLite', () => {
     await request(app).get(`/api/issues/${issue.id}`).expect(200, { issue });
   });
 
-  it.each(['', '   ', '\t\n', '\u00a0', null, undefined, 123, 'x'.repeat(161)])('rejects an invalid title: %j', async title => {
+  it.each(['', '   ', '\t\n', '\u00a0', '\0', '\0abc', 'abc\0', null, undefined, 123, 'x'.repeat(161)])('rejects an invalid title: %j', async title => {
     const response = await request(app).post('/api/issues').send({ title }).expect(400);
     expect(response.body.error.code).toBe('INVALID_TITLE');
     expect(store.list()).toEqual([]);
@@ -145,5 +145,11 @@ describe('Issue API with isolated, real SQLite', () => {
     const response = await request(app).get('/api/issues').expect(500);
     expect(response.body.error.code).toBe('INTERNAL_ERROR');
     expect(JSON.stringify(response.body)).not.toContain('private failure details');
+  });
+
+  it.each(['%', '%E0%A4%A'])('returns 400 rather than 500 for invalid URL encoding %s', async id => {
+    const response = await request(app).get(`/api/issues/${id}`).expect(400);
+    expect(response.body.error.code).toBe('INVALID_URL');
+    expect(store.list()).toEqual([]);
   });
 });

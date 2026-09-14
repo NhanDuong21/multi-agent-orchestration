@@ -34,6 +34,9 @@ export function createApp(store: IssueStore, webDirectory?: string) {
   app.post('/api/issues', (req, res) => {
     const body: unknown = req.body;
     if (!record(body)) { fail(res, 400, 'INVALID_BODY', 'Nội dung yêu cầu phải là một đối tượng JSON.'); return; }
+    if (typeof body.title === 'string' && body.title.includes('\0')) {
+      fail(res, 400, 'INVALID_TITLE', 'Tiêu đề có ký tự không hợp lệ. Vui lòng nhập lại.', 'title'); return;
+    }
     if (typeof body.title !== 'string' || !body.title.trim() || body.title.trim().length > TITLE_MAX_LENGTH) {
       fail(res, 400, 'INVALID_TITLE', `Tiêu đề phải có từ 1 đến ${TITLE_MAX_LENGTH} ký tự, không chỉ có khoảng trắng.`, 'title'); return;
     }
@@ -74,7 +77,9 @@ export function createApp(store: IssueStore, webDirectory?: string) {
 
   const errorHandler: ErrorRequestHandler = (error: unknown, _req, res, next) => {
     if (res.headersSent) { next(error); return; }
-    if (record(error) && error.type === 'entity.parse.failed') {
+    if (error instanceof URIError) {
+      fail(res, 400, 'INVALID_URL', 'Đường dẫn yêu cầu không hợp lệ.');
+    } else if (record(error) && error.type === 'entity.parse.failed') {
       fail(res, 400, 'INVALID_JSON', 'Nội dung JSON không hợp lệ.');
     } else if (record(error) && error.type === 'entity.too.large') {
       fail(res, 413, 'BODY_TOO_LARGE', 'Nội dung yêu cầu quá lớn.');
